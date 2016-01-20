@@ -55,7 +55,6 @@ for (var i = numSchemes - 1; i >= 0; i--)
     var contents = yaml.safeLoad(fs.readFileSync(path.resolve(inputSchemes[i]), 'utf8'), function(err)
     {
         if (err) return console.log(err);
-        console.log('Scheme saved to "' + destPath + '"');
     });
 
     for (var prop in contents)

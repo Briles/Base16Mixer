@@ -50,9 +50,9 @@ var numSchemes = inputSchemes.length;
 
 if (numSchemes != 2) throw new Error('Missing ' + (2 - numSchemes) + ' inputSchemes to mix');
 
-for (var i = numSchemes - 1; i >= 0; i--)
+inputSchemes.forEach(function(scheme)
 {
-    var contents = yaml.safeLoad(fs.readFileSync(path.resolve(inputSchemes[i]), 'utf8'), function(err)
+    var contents = yaml.safeLoad(fs.readFileSync(path.resolve(scheme), 'utf8'), function(err)
     {
         if (err) return console.log(err);
     });
@@ -64,7 +64,7 @@ for (var i = numSchemes - 1; i >= 0; i--)
         if (tempScheme[prop] === undefined) throw new Error('"' + prop + '" not a valid Base16 scheme property');
         tempScheme[prop].push(contents[prop]);
     }
-}
+});
 
 for (var prop in tempScheme)
 {

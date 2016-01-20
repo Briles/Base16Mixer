@@ -6,20 +6,6 @@ var fs = require('fs'),
     tinycolor = require("tinycolor2"),
     yaml = require('js-yaml');
 
-// Utility Functions
-var uniques = function(arr)
-{
-    var a = [];
-    for (var i = 0, l = arr.length; i < l; i++)
-    {
-        if (a.indexOf(arr[i]) === -1 && arr[i] !== '')
-        {
-            a.push(arr[i]);
-        }
-    }
-    return a;
-};
-
 var inputSchemes = process.argv[2],
     tempScheme = {
         scheme: [],
@@ -88,3 +74,17 @@ fs.writeFile(destPath, yaml.dump(mixedScheme), function(err)
     if (err) return console.log(err);
     console.log('Scheme saved to "' + destPath + '"');
 });
+
+// Utility Functions
+function uniques(arr)
+{
+    var a = [];
+    for (var i = 0, l = arr.length; i < l; i++)
+    {
+        if (a.indexOf(arr[i]) === -1 && arr[i] !== '')
+        {
+            a.push(arr[i]);
+        }
+    }
+    return a;
+}

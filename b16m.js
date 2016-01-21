@@ -6,18 +6,7 @@
   var path = require('path');
   var tinycolor = require('tinycolor2');
   var yaml = require('js-yaml');
-
-  // Utility Functions
-  function uniques(arr) {
-    var a = [];
-    for (var i = 0, l = arr.length; i < l; i++) {
-      if (a.indexOf(arr[i]) === -1 && arr[i] !== '') {
-        a.push(arr[i]);
-      }
-    }
-
-    return a;
-  }
+  var _ = require('lodash');
 
   var inputSchemes = process.argv[2];
   var tempScheme = {
@@ -81,7 +70,7 @@
     }
 
     if (prop === 'scheme' || prop === 'author') {
-      mixedScheme[prop] = uniques(tempScheme[prop]).join(' - ');
+      mixedScheme[prop] = _(tempScheme[prop]).uniq().sortBy().join(' - ');
     } else {
       mixedScheme[prop] = tinycolor.mix.apply(null, tempScheme[prop]).toHex();
       console.log(tempScheme[prop][0] + ' + ' + tempScheme[prop][1] + ' --> ' + mixedScheme[prop]);

@@ -70,11 +70,13 @@
         continue;
       }
 
+      var propPair = tempScheme[prop];
+
       if (prop === 'scheme' || prop === 'author') {
-        mixedScheme[prop] = _(tempScheme[prop]).uniq().sortBy().join(' - ');
+        mixedScheme[prop] = _(propPair).uniq().sortBy().join(' - ');
       } else {
-        mixedScheme[prop] = tinycolor.mix.apply(null, tempScheme[prop]).toHex();
-        console.log(tempScheme[prop][0] + ' + ' + tempScheme[prop][1] + ' --> ' + mixedScheme[prop]);
+        mixedScheme[prop] = tinycolor.mix.apply(null, propPair).toHex();
+        console.log(propPair[0] + ' + ' + propPair[1] + ' --> ' + mixedScheme[prop]);
       }
     }
 

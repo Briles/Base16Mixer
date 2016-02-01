@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   // Dependencies
@@ -42,10 +42,10 @@
     throw new Error('Missing ' + (2 - numSchemes) + ' inputSchemes to mix');
   }
 
-  inputSchemes.forEach(function(scheme) {
+  inputSchemes.forEach(function (scheme) {
     var raw = fs.readFileSync(path.resolve(scheme), 'utf8');
 
-    var contents = yaml.safeLoad(raw, function(err) {
+    var contents = yaml.safeLoad(raw, function (err) {
       if (err) {
         return console.log(err);
       }
@@ -77,9 +77,9 @@
     }
   }
 
-  var destPath = path.join(process.cwd(), mixedScheme.scheme + '.yml');
+  var destPath = path.join(process.cwd(), '/output/', mixedScheme.scheme + '.yml');
 
-  fs.writeFile(destPath, yaml.dump(mixedScheme), function(err) {
+  fs.writeFile(destPath, yaml.dump(mixedScheme), function (err) {
     if (err) {
       return console.log(err);
     }

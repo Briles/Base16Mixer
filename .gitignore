@@ -1,6 +1,3 @@
-# Custom PowerShell Build Tools
-*.ps1
-
 # Base16 Schemes
 *.yml
 *.yaml

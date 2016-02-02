@@ -3,11 +3,11 @@
 
   var b16m = function (schemes) {
     // Dependencies
-    var fs = require('fs');
-    var path = require('path');
-    var tinycolor = require('tinycolor2');
-    var yaml = require('js-yaml');
-    var _ = require('lodash');
+    const fs = require('fs');
+    const path = require('path');
+    const tinycolor = require('tinycolor2');
+    const yaml = require('js-yaml');
+    const _ = require('lodash');
 
     var inputSchemes = schemes;
     var tempScheme = {

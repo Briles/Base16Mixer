@@ -2,10 +2,10 @@
   'use strict';
 
   // Dependencies
-  var fs = require('fs');
-  var path = require('path');
-  var _ = require('lodash');
-  var b16m = require('./b16m');
+  const fs = require('fs');
+  const path = require('path');
+  const _ = require('lodash');
+  const b16m = require('./b16m');
 
   var finished = [];
 

@@ -25,9 +25,8 @@
         return path.join('./schemes/', schemepath);
       }).join(',');
 
-      console.log('Merging ' + scheme1 + ' with ' + scheme2 + '\n');
+      console.log(`Merging ${scheme1} with ${scheme2}`);
       b16m(schemePaths);
-      console.log();
     });
 
     finished.push(scheme);

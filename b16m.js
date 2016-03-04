@@ -40,7 +40,7 @@
     var numSchemes = inputSchemes.length;
 
     if (numSchemes !== 2) {
-      throw new Error('Missing ' + (2 - numSchemes) + ' inputSchemes to mix');
+      throw new Error(`Missing ${2 - numSchemes} inputSchemes to mix`);
     }
 
     inputSchemes.forEach(function (scheme) {
@@ -58,7 +58,7 @@
         }
 
         if (tempScheme[prop] === undefined) {
-          throw new Error('"' + prop + '" not a valid Base16 scheme property');
+          throw new Error(`"${prop}" not a valid Base16 scheme property`);
         }
 
         tempScheme[prop].push(contents[prop]);
@@ -76,7 +76,7 @@
         mixedScheme[prop] = _(propPair).uniq().sortBy().join(' - ');
       } else {
         mixedScheme[prop] = tinycolor.mix.apply(null, propPair).toHex();
-        console.log(propPair[0] + ' + ' + propPair[1] + ' --> ' + mixedScheme[prop]);
+        console.log(`${propPair[0]} + ${propPair[1]} --> ${mixedScheme[prop]}`);
       }
     }
 
@@ -87,7 +87,7 @@
         return console.log(err);
       }
 
-      console.log('Scheme saved to "' + destPath + '"');
+      console.log(`Scheme saved to "${destPath}`);
     });
   };
 

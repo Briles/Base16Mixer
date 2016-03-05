@@ -62,7 +62,7 @@
 
   };
 
-  if (process.argv[2] === undefined && typeof module !== 'undefined' && module.exports) {
+  if (require.main !== module && typeof module !== 'undefined' && module.exports) {
     module.exports = b16m;
   } else {
     b16m(process.argv[2]);

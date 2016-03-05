@@ -10,7 +10,8 @@
     const _ = require('lodash');
 
     if (typeof (schemes) === 'undefined') {
-      throw new Error('Usage: b16m <Scheme 1>,<Scheme 2>');
+      console.log('Usage: b16m <Scheme 1>,<Scheme 2>');
+      process.exit(1);
     }
 
     schemes = schemes.split(',');

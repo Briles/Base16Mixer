@@ -9,21 +9,19 @@
     const yaml = require('js-yaml');
     const _ = require('lodash');
 
-    var inputSchemes = schemes;
-
-    if (typeof (inputSchemes) === 'undefined') {
+    if (typeof (schemes) === 'undefined') {
       throw new Error('Usage: b16m <Scheme 1>,<Scheme 2>');
     }
 
-    inputSchemes = inputSchemes.split(',');
-    var numSchemes = inputSchemes.length;
+    schemes = schemes.split(',');
+    var numSchemes = schemes.length;
 
     if (numSchemes !== 2) {
-      throw new Error(`Missing ${2 - numSchemes} inputSchemes to mix`);
+      throw new Error(`Missing ${2 - numSchemes} schemes to mix`);
     }
 
     var schemeObjects = [];
-    inputSchemes.forEach(function (scheme) {
+    schemes.forEach(function (scheme) {
       schemeObjects.push(loadScheme(scheme));
     });
 

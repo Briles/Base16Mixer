@@ -8,16 +8,16 @@ The schemes' Names will be sorted so no duplicate schemes are ever created.
 
 Mix the `Default` and `Monokai` Base16 schemes using the command line:
 
-`node b16m.js "Default.yml","Monokai.yml" // Writes "Default - Monokai.yml" to output directory`
+`node b16m.js Default.yml Monokai.yml // Writes "Default - Monokai.yml" to output directory`
 
 You can also `require` b16m for use in other scripts:
 
 ```js
 var b16m = require('b16m');
 
-// Call b16m with a string which represents the two scheme's paths separated by a comma
+// call b16m with two scheme paths as the parameters
 // Does not currently return anything
-b16m("Default.yml,Monokai.yml") // Writes "Default - Monokai.yml" to output directory
+b16m("Default.yml", "Monokai.yml") // Writes "Default - Monokai.yml" to output directory
 ```
 
 Run `batch.js` to mix all schemes in the `schemes` directory

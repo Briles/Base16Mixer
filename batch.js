@@ -23,10 +23,10 @@
     }).forEach(function (scheme2) {
       var schemePaths = [scheme1, scheme2].map(function (schemepath) {
         return path.join('./schemes/', schemepath);
-      }).join(',');
+      });
 
       console.log(`Merging ${scheme1} with ${scheme2}`);
-      b16m(schemePaths);
+      b16m(schemePaths[0], schemePaths[1]);
     });
 
     finished.push(scheme);

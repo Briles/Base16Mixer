@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var b16m = function (schemes) {
+  var b16m = function (scheme1, scheme2) {
     // Dependencies
     const fs = require('fs');
     const path = require('path');
@@ -9,26 +9,18 @@
     const yaml = require('js-yaml');
     const _ = require('lodash');
 
-    if (typeof (schemes) === 'undefined') {
-      console.log('Usage: b16m <Scheme 1>,<Scheme 2>');
+    if (typeof scheme1 === 'undefined' || typeof scheme2 === 'undefined') {
+      console.log('Usage: b16m <Scheme 1> <Scheme 2>');
       process.exit(1);
     }
 
-    schemes = schemes.split(',');
-    var numSchemes = schemes.length;
-
-    if (numSchemes !== 2) {
-      throw new Error(`Missing ${2 - numSchemes} schemes to mix`);
-    }
-
-    var schemeObjects = [];
-    schemes.forEach(function (scheme) {
-      schemeObjects.push(loadScheme(scheme));
+    var schemeObjects = [scheme1, scheme2].map(function (scheme) {
+      return loadScheme(scheme);
     });
 
-    var mixedScheme = _.clone(schemeObjects[0]);
+    var baseScheme = _.clone(schemeObjects[0]);
 
-    _.mergeWith(mixedScheme, schemeObjects[1], function (a, b, key) {
+    _.mergeWith(baseScheme, schemeObjects[1], function (a, b, key) {
       var mergedValue;
       var objPair = [a, b];
 
@@ -41,9 +33,9 @@
       return mergedValue;
     });
 
-    var destPath = path.join(process.cwd(), '/output/', mixedScheme.scheme + '.yml');
+    var destPath = path.join(process.cwd(), '/output/', baseScheme.scheme + '.yml');
 
-    fs.writeFile(destPath, yaml.dump(mixedScheme), function (err) {
+    fs.writeFile(destPath, yaml.dump(baseScheme), function (err) {
       if (err) {
         return console.log(err);
       }
@@ -66,7 +58,7 @@
   if (require.main !== module && typeof module !== 'undefined' && module.exports) {
     module.exports = b16m;
   } else {
-    b16m(process.argv[2]);
+    b16m(process.argv[2], process.argv[3]);
   }
 
 }());

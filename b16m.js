@@ -27,7 +27,7 @@
       if (key === 'scheme' || key === 'author') {
         mergedValue = _(objPair).uniq().sortBy().join(' - ');
       } else {
-        mergedValue = tinycolor.mix.apply(null, objPair).toHex();
+        mergedValue = tinycolor.mix.apply(tinycolor, objPair).toHex();
       }
 
       return mergedValue;

@@ -1,0 +1,50 @@
+doctype html
+html(ng-app="base16Mixer", ng-controller="base16MixerCtrl")
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(http-equiv='content-type' content='text/html; charset=UTF-8')
+    title Base16 Mixer
+    meta(
+      name='description'
+      content="An app for mixing colors from two Base16 color schemes"
+    )
+    meta(name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1')
+    link(rel='icon' type='image/x-icon' href='favicon.ico')
+    link(href='main.min.css' rel='stylesheet' type='text/css' media='all')
+    if (release === false)
+      link(
+        href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,100italic,300italic,400italic,500,500italic,700,700italic,900,900italic'
+        rel='stylesheet'
+        type='text/css'
+      )
+      script(src="//localhost:35729/livereload.js" async)
+      script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js")
+    else
+      link(
+        href='https://fonts.googleapis.com/css?family=Roboto:400,500'
+        rel='stylesheet'
+        type='text/css'
+      )
+      script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js")
+    script(src="main.min.js")
+  body(ng-style="{'background': scheme.palette.background}")
+    .page-part
+      h1.page-title
+        a(href="https://github.com/Briles/Base16Mixer") Base16 Mixer
+      ul.schemes-selector
+        li(ng-repeat="(name, scheme) in schemes")
+          input(
+            id="{{name}}"
+            type="checkbox"
+            ng-click="select()"
+            ng-model="selected[name]"
+            ng-disabled="isSelectable()"
+          )
+          label(for="{{name}}") {{scheme.scheme}}
+      button.call-to-action(
+        ng-disabled="isMixable()"
+        ng-click="mix()"
+      ) Mix!
+    .container
+      p.output(ng-class="{active: !!mixed}") {{mixed}}

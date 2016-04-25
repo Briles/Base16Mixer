@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: normal normal 14px / 24px $--font-stack-sans;
+
+  text-rendering: optimizeLegibility;
+
+  background-color: $gray;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+}
+
+svg {
+  fill: currentColor;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.page-part {
+  position: relative;
+
+  padding: 20px 0 59px;
+
+  border-bottom: 2px solid darken($gray, 10);
+  background-color: $white;
+}
+
+.page-title {
+  margin-bottom: 20px;
+
+  text-align: center;
+
+  color: $blue;
+  a {
+    text-decoration: none;
+
+    color: inherit;
+  }
+}
+
+.schemes-selector {
+  display: block;
+
+  width: 100%;
+
+  text-align: center;
+  li {
+    display: inline-block;
+
+    list-style-type: none;
+    input {
+      display: none;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 500;
+
+      display: block;
+
+      margin: 4px;
+      padding: 2px 10px;
+
+      transition: $--transition;
+
+      background-color: $gray;
+    }
+
+    input:checked + label {
+      color: $white;
+      background-color: $blue;
+    }
+  }
+}
+
+.call-to-action {
+  font-size: 18px;
+  font-weight: 500;
+
+  position: absolute;
+  top: 100%;
+  left: 50%;
+
+  display: block;
+
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+
+  transition: $--transition;
+  transform: translate(-50%, -50%);
+
+  color: $white;
+  border: 3px solid $white;
+  border-radius: 50%;
+  outline: 0;
+  background-color: $green;
+  box-shadow: 0 0 0 2px darken($gray, 10);
+  &:disabled {
+    pointer-events: none;
+
+    color: fade-out(#222, .5);
+    background-color: darken($gray, 8);
+  }
+  &:hover {
+    box-shadow: 0 0 0 2px $green;
+  }
+}
+
+.output {
+  visibility: hidden;
+
+  padding: 59px 5px 5px;
+
+  transition: opacity 140ms ease-in;
+  white-space: pre;
+
+  opacity: 0;
+  &.active {
+    visibility: visible;
+
+    opacity: 1;
+  }
+}

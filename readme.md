@@ -2,22 +2,28 @@
 Mix colors from two Base16 Color Schemes
 
 ##### Usage
-b16m will mix the colors from the two schemes and output the resulting mixed scheme as YAML in the `output` directory.
-The schemes' Names and Authors are joined by ` - `.
-The schemes' Names will be sorted so no duplicate schemes are ever created.
 
-Mix the `Default` and `Monokai` Base16 schemes using the command line:
+`b16m(scheme1Name=Default, scheme2Name=Default, [asYaml=false])`
 
-`node b16m.js Default.yml Monokai.yml // Writes "Default - Monokai.yml" to output directory`
+Arguments:
 
-You can also `require` b16m for use in other scripts:
+* `scheme1Name`: The name of the first base16 scheme to mix
+* `scheme2Name`: The name of the second base16 scheme to mix
+* `asYaml`: When set to true, returns the mixed scheme as YAML
 
-```js
-var b16m = require('b16m');
+**Command Line**
 
-// call b16m with two scheme paths as the parameters
-// Does not currently return anything
-b16m("Default.yml", "Monokai.yml") // Writes "Default - Monokai.yml" to output directory
+`index.js <scheme 1 name> <scheme 2 name>`
+
+Mixed schemes are automatically written to the current directory
+
+Run `batch.js` to mix all the base16 schemes and write the mixed schemes to
+an `output` directory (results in 1275 schemes)
+
+**In JavaScript**
+
+```javascript
+  var b16m = require('./b16m.js');
+
+  var mixed = b16m('Default', 'Monokai');
 ```
-
-Run `batch.js` to mix all schemes in the `schemes` directory

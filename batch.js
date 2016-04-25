@@ -1,35 +1,30 @@
 (function () {
   'use strict';
 
-  // Dependencies
-  const fs = require('fs');
-  const path = require('path');
-  const _ = require('lodash');
-  const b16m = require('./b16m');
+  var b16m = require('./b16m');
+  var fs = require('fs');
+  var includes = require('lodash.includes');
+  var schemes = require('./schemes');
+  var yaml = require('js-yaml');
 
-  var finished = [];
-
-  var schemes = fs.readdirSync('./schemes').filter(function (file) {
-    return path.extname(file) === '.yml';
-  });
-
-  schemes.forEach(function (scheme) {
-    var scheme1 = scheme;
-
-    schemes.filter(function (file) {
-      if (!_.includes(finished, file) && file !== scheme) {
-        return file;
+  function run() {
+    var finished = [];
+    for (var scheme in schemes) {
+      for (var scheme2 in schemes) {
+        var mixedScheme = b16m(scheme, scheme2);
+        var mixedSchemeName = mixedScheme.scheme.toLowerCase();
+        if (!includes(finished, mixedSchemeName) && scheme !== scheme2) {
+          console.log(`Merging ${scheme} with ${scheme2}`);
+          fs.writeFile('./output/' + mixedScheme.scheme + '.yml', yaml.dump(mixedScheme));
+          finished.push(mixedSchemeName);
+        }
       }
-    }).forEach(function (scheme2) {
-      var schemePaths = [scheme1, scheme2].map(function (schemepath) {
-        return path.join('./schemes/', schemepath);
-      });
+    }
+  }
 
-      console.log(`Merging ${scheme1} with ${scheme2}`);
-      b16m(schemePaths[0], schemePaths[1]);
-    });
-
-    finished.push(scheme);
+  fs.mkdir('./output', function (err) {
+    if (err && err.code !== 'EEXIST') process.exit(1);
+    run();
   });
 
 }());

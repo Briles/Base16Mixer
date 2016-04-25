@@ -13,7 +13,7 @@
     asYaml = asYaml || false;
 
     function fetchScheme(name) {
-      return schemes[(name.toLowerCase() || 'default')];
+      return schemes[(name || 'default').toLowerCase()];
     }
 
     var mergedScheme = mergeWith(clone(fetchScheme(scheme1)), fetchScheme(scheme2), function (a, b, key) {

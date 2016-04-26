@@ -1,4 +1,5 @@
 [![Build Status](https://img.shields.io/travis/Briles/Base16Mixer/master.svg?style=flat-square)](https://travis-ci.org/Briles/Base16Mixer)
+[![codecov.io](https://codecov.io/github/Briles/Base16Mixer/coverage.svg?branch=master)](https://codecov.io/github/Briles/Base16Mixer?branch=master)
 
 # Base16 Mixer
 Mix colors from two Base16 Color Schemes

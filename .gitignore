@@ -2,6 +2,8 @@
 *.yml
 *.yaml
 
+!.travis.yml
+
 # Created by https://www.gitignore.io/api/sublimetext,node
 
 ### SublimeText ###

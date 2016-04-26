@@ -1,3 +1,5 @@
+[![Build Status](https://img.shields.io/travis/Briles/Base16Mixer/develop.svg?style=flat-square)](https://travis-ci.org/Briles/Base16Mixer)
+
 # Base16 Mixer
 Mix colors from two Base16 Color Schemes
 

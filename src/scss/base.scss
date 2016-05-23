@@ -87,7 +87,7 @@ svg {
       background-color: $gray;
     }
 
-    input:checked + label {
+    input:checked + label, input:not(:disabled) + label:hover {
       color: $white;
       background-color: $blue;
     }
